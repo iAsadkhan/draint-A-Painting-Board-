@@ -9,7 +9,7 @@ function Stroke(props) {
             type="range"
             onChange={e => props.setStrokeSize(e.target.value)} 
             value={props.strokeSize}
-            onMouseMove={e => props.setStrokeSize(e.target.value)} 
+            onMouseDown={e => props.setStrokeSize(e.target.value)} 
             />
         </div>
     )

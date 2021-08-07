@@ -45,6 +45,8 @@ function handleMouseMove(e) {
       e.clientX - canvasRef.current.offsetLeft,
       e.clientY - canvasRef.current.offsetTop
     ]    
+console.log(canvasRef.current)
+    console.log(...coords)
     if (drawing) { 
         ctx.current.lineTo(...coords)
         ctx.current.stroke()
@@ -54,6 +56,22 @@ function handleMouseMove(e) {
       }
     }
 
+    function handleMouseMove2(e) {
+      // actual coordinates
+      const coords = [
+        e.clientX - canvasRef.current.offsetLeft,
+        e.clientY - canvasRef.current.offsetTop
+      ]    
+  console.log(canvasRef.current)
+      console.log(...coords)
+      if (drawing) { 
+          ctx.current.lineTo(...coords)
+          ctx.current.stroke()
+        }
+        if (props.handleMouseMove2) {
+            props.handleMouseMove2(...coords)
+        }
+      }
     return (
       <>
       <canvas 
@@ -66,7 +84,7 @@ function handleMouseMove(e) {
           onMouseOut={stopDrawing}
           onMouseMove={handleMouseMove}
           onTouchStart={startDrawing}
-          onTouchMove={handleMouseMove}
+          onTouchMove={handleMouseMove2}
         />
       </>
     )
