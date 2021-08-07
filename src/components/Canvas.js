@@ -5,11 +5,13 @@ function Canvas(props) {
 const [drawing,setDrawing]=useState(false)
 const [width,setWidth]=useState(window.innerWidth)
 const [height,setHeight]=useState(window.innerHeight)
+const [strokesize,setStrokeSize]=useState(props)
 const [windowWidth, windowHeight] = useWindowSize(() => {
     setWidth(window.innerWidth)
     setHeight(window.innerHeight)
   })
   
+  console.log(props.strokeSize)
 const canvasRef=useRef(null)
 const ctx = useRef()
 
@@ -20,7 +22,7 @@ function startDrawing(e)
 {
     ctx.current.lineJoin = 'round'
     ctx.current.lineCap = 'round'
-    ctx.current.lineWidth = 10
+    ctx.current.lineWidth = props.strokeSize
     ctx.current.strokeStyle = props.color
     ctx.current.beginPath();
     // actual coordinates
@@ -54,7 +56,8 @@ function handleMouseMove(e) {
 
     return (
       <>
-      <canvas
+      <canvas 
+      className="canvas"
           ref={canvasRef}
           width={props.width || width}
           height={props.height || height}
@@ -62,6 +65,8 @@ function handleMouseMove(e) {
           onMouseUp={stopDrawing}
           onMouseOut={stopDrawing}
           onMouseMove={handleMouseMove}
+          onTouchStart={startDrawing}
+          onTouchMove={handleMouseMove}
         />
       </>
     )

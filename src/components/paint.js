@@ -5,13 +5,14 @@ import randomColor from 'randomcolor';
 import useWindowSize from './WindowSize';
 import Canvas from './Canvas';
 import RefreshButton from './RefreshButton';
-
+import Stroke from './Stroke';
 
 function Paint() {
 const [colors,setColors] =useState([])
 const [activeColor,setActiveColor] =useState(null)
+const [strokeSize,setStrokeSize]=useState(10)
 
-const boxref =useRef({offsetHeight:0})
+const boxref =useRef({offsetHeight:0 ,offsetWidth:0})
 console.log(boxref.current.offsetHeight)
 
 
@@ -33,7 +34,7 @@ console.log(boxref.current.offsetHeight)
       clearTimeout(timeoutId.current)
       timeoutId.current = setTimeout(() => setVisible(false), 500)
     })
-    
+ 
     return (
         <>
         <div ref={boxref} className="box" style={{ border:`10px solid ${activeColor}`}}>
@@ -46,10 +47,13 @@ console.log(boxref.current.offsetHeight)
         />
         <RefreshButton cb={getColors}/>
       </div>
+      <Stroke strokeSize={strokeSize} setStrokeSize={setStrokeSize}color={activeColor}/>
       {activeColor && (
         <Canvas
           color={activeColor}
           height={window.innerHeight - boxref.current.offsetHeight}
+          width={window.innerWidth - boxref.current.offsetWidth}
+          strokeSize={strokeSize}
         />
       )}
       <div className={`window-size ${visible ? '' : 'hidden'}`}>

@@ -38,7 +38,27 @@ input[type=text]
     float:right;
     outline: none;
   }
-  
+  .stroke 
+  {
+    position: relative;
+    display:flex;
+    flex-direction: row;
+    top:1rem;
+    justify-content: center;
+
+  }
+.stroke-inner
+{
+  width:15rem;
+  height: 1rem;
+  background-color: yellow;
+  border-radius: 50px;
+}
+  .stroke input
+  {
+   position: absolute;
+   top:1.5rem;
+  }
 .color-picker {
     border: none;
     padding: 0;
