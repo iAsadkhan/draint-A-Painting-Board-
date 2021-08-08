@@ -64,8 +64,7 @@ function handleMouseMove(e) {
       e.clientX - canvasRef.current.offsetLeft,
       e.clientY - canvasRef.current.offsetTop
     ]    
-console.log(canvasRef.current)
-    console.log(...coords)
+
     if (drawing) { 
         ctx.current.lineTo(...coords)
         ctx.current.stroke()
