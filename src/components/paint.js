@@ -6,6 +6,7 @@ import useWindowSize from './WindowSize';
 import Canvas from './Canvas';
 import RefreshButton from './RefreshButton';
 import Stroke from './Stroke';
+import Eraser from './Eraser';
 
 function Paint() {
 const [colors,setColors] =useState([])
@@ -45,6 +46,7 @@ console.log(boxref.current.offsetHeight)
           activeColor={activeColor}
           setActiveColor={setActiveColor}
         />
+        <Eraser activeColor={activeColor} setActiveColor={setActiveColor}/>
         <RefreshButton cb={getColors}/>
       </div>
       <Stroke strokeSize={strokeSize} setStrokeSize={setStrokeSize}color={activeColor}/>
